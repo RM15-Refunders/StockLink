@@ -51,11 +51,12 @@ These are planned capabilities, not claims about features already implemented.
 | Field | Details |
 |---|---|
 | Team | RM15 Refunders |
-| Team domain | To be confirmed |
+| Team domain | Domain 2 - ALPHA RED |
 | Primary SDG track | SDG 8 |
-| Team leader | To be added |
-| University | To be added |
-| Team members | To be added |
+| Team leader | Wang Yanfeng |
+| University | Xiamen University Malaysia |
+| Number of members | 5 |
+| Team members | Liu Jiaming; Zhou Xiaduo; Geng Ruixi; Gao Zijun |
 
 ## Links
 
@@ -92,7 +93,7 @@ Potential areas to evaluate include supplier follow-up workflows, configurable s
 
 ## Submission Checklist
 
-- [ ] Confirm the team domain and complete team information.
+- [ ] Confirm the product name.
 - [ ] Complete the official product requirement document.
 - [ ] Add the pitch deck, live prototype, and demo video links.
 - [ ] Declare all technologies, tools, services, datasets, models, and sponsor resources actually used.
