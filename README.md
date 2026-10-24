@@ -1,10 +1,16 @@
-<p align="center"><img src="artifacts/stocklink/public/stocklink-logo.jpg" alt="StockLink" width="160"></p>
+<p align="center"><img src="src/artifacts/stocklink/public/stocklink-logo.jpg" alt="StockLink" width="160"></p>
 
 # StockLink
 
 **Connect orders to stock. See risk early. Keep people in control.**
 
 An inventory and order-management prototype for Malaysian micro and small businesses. The Kopi Corner demo connects confirmed orders, recipe quantities, on-hand inventory and incoming deliveries in an explainable seven-day stock forecast.
+
+## Watch our pitch
+
+**[▶ Watch our Pitch Video on YouTube](https://youtu.be/a2iZmWnK0s8)** · **[View our Pitch Deck](submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
+
+Our presentation introduces StockLink and our order-linked inventory workflow. All uploaded documents are collected in [submission](submission/README.md).
 
 [Live demo](https://stock-link.replit.app/) · [Replit](https://replit.com/@WilliamWang185/StockLink) · [中文说明](docs/README.zh-CN.md) · [Demo guide](docs/demo-guide.md) · [Architecture](docs/architecture.md)
 
@@ -41,7 +47,7 @@ PORT=3000 BASE_PATH=/ pnpm run build
 PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run serve
 ```
 
-The full build includes type checks. Static output: `artifacts/stocklink/dist/public/`. Static hosting needs index.html fallback for client routes such as /orders. A build does not publish the live Replit deployment.
+The full build includes type checks. Static output: `src/artifacts/stocklink/dist/public/`. Static hosting needs index.html fallback for client routes such as /orders. A build does not publish the live Replit deployment.
 
 | Variable | Example | Purpose |
 |---|---|---|
@@ -65,14 +71,19 @@ Milk example: `30 − (12 × 3) = −6 L` before the day-3 delivery; 5 L safety 
 | AI / external services | Not integrated |
 
 ```text
-artifacts/stocklink/        Main demo and brand assets
-artifacts/api-server/       API scaffold
-artifacts/mockup-sandbox/   Design sandbox
-lib/                       Shared contracts, generated clients and DB scaffold
-scripts/                   Workspace utilities
-docs/                      Architecture, demo and competition reference
-.github/                   CI and contribution templates
+src/artifacts/stocklink/        Main demo and brand assets
+src/artifacts/api-server/       API scaffold
+src/artifacts/mockup-sandbox/   Design sandbox
+src/lib/                        Shared contracts, generated clients and DB scaffold
+src/scripts/                    Workspace utilities
+docs/                           Architecture, demo and competition reference
+submission/                     Supplied PDF proposal, declaration and Replit proof
+.github/                        CI and contribution templates
 ```
+
+## Submission documents
+
+Our [Pitch Deck](submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) and [YouTube pitch video](https://youtu.be/a2iZmWnK0s8) are available. Our three supplied PDF files are archived unchanged in [submission](submission/README.md): [preliminary proposal](submission/SDC2026_RM15Refunders_Preliminary.pdf), [technical declaration](submission/SDC2026_RM15Refunders_TechDeclaration.pdf) and [Replit usage statement](submission/REPLIT%20DECLARATION%20OF%20USE.pdf). Repository publication does not establish submission acceptance.
 
 ## Evidence and declaration
 

@@ -4,6 +4,12 @@ StockLink 面向马来西亚微型和小型企业，把客户订单、配方用�
 
 [在线演示](https://stock-link.replit.app/) · [英文首页](../README.md) · [演示步骤](demo-guide.md) · [架构说明](architecture.md)
 
+## Pitch 视频与演示文稿
+
+**[▶ 观看 YouTube Pitch 视频](https://youtu.be/a2iZmWnK0s8)** · **[查看已上传的 Pitch Deck](../submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
+
+视频已上传至 YouTube，Pitch Deck 已放入 submission 文件夹。
+
 ## 当前功能
 
 - 库存预测及风险解释。
@@ -32,6 +38,12 @@ PORT=3000 BASE_PATH=/ pnpm run build
 PORT 和 BASE_PATH 必须在启动前提供。原生 Windows/macOS 尚未验证，当前工作区排除了部分非 Linux 原生依赖。
 
 当前团队分工、参赛说明和材料状态见 [competition-reference.md](competition-reference.md)。协作请参考 [CONTRIBUTING.md](../CONTRIBUTING.md)。尚未接入的服务和未提交的证明材料不计为完成。
+
+## 代码和提交材料
+
+代码统一位于 `src/`：`src/artifacts/stocklink` 是主应用，`src/artifacts/api-server` 是 API 框架，`src/artifacts/mockup-sandbox` 是开发预览，`src/lib` 是共享库，`src/scripts` 是维护工具。依赖、TypeScript 总配置、GitHub Actions 与许可证保留在根目录；启动命令仍在根目录执行。
+
+三份原始 PDF 已收录到 [submission](../submission/README.md)，保留提供时的内容。材料已入库不代表组委会已接收。
 
 ## 使用证明与工具声明
 

@@ -3,7 +3,7 @@ modules = ["nodejs-24"]
 [deployment]
 router = "application"
 deploymentTarget = "static"
-publicDir = "artifacts/stocklink/dist/public"
+publicDir = "src/artifacts/stocklink/dist/public"
 
 [deployment.postBuild]
 args = ["pnpm", "store", "prune"]
@@ -17,5 +17,5 @@ stack = "PNPM_WORKSPACE"
 expertMode = true
 
 [postMerge]
-path = "scripts/post-merge.sh"
+path = "src/scripts/post-merge.sh"
 timeoutMs = 20000

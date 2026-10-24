@@ -1,6 +1,6 @@
 # Architecture and assumptions
 
-The active demo lives in `artifacts/stocklink/src/App.tsx`. React state contains inventory, orders, deliveries, recipes, recommendations and events. localStorage (`stocklink-demo-v1`) persists state in the same browser. Wouter selects the five views.
+The active demo lives in `src/artifacts/stocklink/src/App.tsx`. React state contains inventory, orders, deliveries, recipes, recommendations and events. localStorage (`stocklink-demo-v1`) persists state in the same browser. Wouter selects the five views.
 
 ```mermaid
 flowchart LR
@@ -37,5 +37,5 @@ Beans on day 7: `8.4 - 1.15 * 7 - 36 * 0.018 + 6 = 5.702 kg`, above 2 kg safety.
 - No authentication, shared persistence, server backup or concurrency handling. Activity is editable local demo history, not a tamper-resistant audit log.
 - Dates mix UTC date generation and local display. Persisted sample dates age; reset before a presentation and check midnight/time-zone behavior.
 - Local storage, numeric inputs and random IDs need stronger validation for real operations. Monetary estimates use illustrative fixed prices.
-- Static hosting needs fallback routing to index.html. Output is artifacts/stocklink/dist/public/.
+- Static hosting needs fallback routing to index.html. Output is src/artifacts/stocklink/dist/public/.
 - Vite needs PORT and BASE_PATH before configuration evaluation. CI checks install/types/build on Ubuntu x64; behavioral checks remain manual.

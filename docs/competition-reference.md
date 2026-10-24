@@ -21,7 +21,7 @@ This page describes the implemented prototype and the evidence available in this
 |---|---|
 | Live prototype | https://stock-link.replit.app/ |
 | Replit project | https://replit.com/@WilliamWang185/StockLink |
-| Replit usage proof | [Public deployment evidence and use statement](replit-usage-evidence.md) |
+| Replit usage proof | [PDF statement](../submission/REPLIT%20DECLARATION%20OF%20USE.pdf) and [public deployment evidence](replit-usage-evidence.md) |
 | Public source repository | https://github.com/RM15-Refunders/StockLink |
 | Project license | [Apache License 2.0](../LICENSE), with [NOTICE](../NOTICE) |
 | Build validation | [GitHub Actions CI](https://github.com/RM15-Refunders/StockLink/actions/workflows/ci.yml) |
@@ -29,14 +29,14 @@ This page describes the implemented prototype and the evidence available in this
 | Mentor guidance | Dr. Chin Shin Liang |
 | Committee collaborators | None |
 | RunPod | Not used. No GPU training, fine-tuning or model inference; no endpoint or GPU runtime exists to declare |
-| PRD / preliminary proposal | Not completed. The reviewed public-redacted draft is not a final official submission |
-| Technical tools declaration | Official declaration not completed. [Repository disclosure](tech-tools-declaration.md) is supporting documentation only |
-| Pitch deck | Not completed |
-| Pitching video | Not uploaded |
+| PRD / preliminary proposal | [PDF available in submission](../submission/SDC2026_RM15Refunders_Preliminary.pdf); original public-redacted contact field retained |
+| Technical tools declaration | [PDF available in submission](../submission/SDC2026_RM15Refunders_TechDeclaration.pdf); accompanying [maintained disclosure](tech-tools-declaration.md) records current repository details |
+| Pitch deck | [Uploaded presentation](../submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) |
+| Pitching video | [Uploaded to YouTube](https://youtu.be/a2iZmWnK0s8) |
 
 ## Problem and implemented solution
 
-Small teams may keep customer orders, stock and expected deliveries in separate records, making it difficult to see whether confirmed demand will exhaust stock before the next delivery. This is the team problem hypothesis; no representative interview, timing or stock-out baseline is claimed.
+Small teams may keep customer orders, stock and expected deliveries in separate records, making it difficult to see whether confirmed demand will exhaust stock before the next delivery. This is our problem hypothesis; no representative interview, timing or stock-out baseline is claimed.
 
 StockLink demonstrates a fictional Kopi Corner workflow with five working views: Overview, Orders, Inventory, Deliveries and Activity. Users create drafts, confirm or cancel orders, edit recipe assumptions and stock rules, receive or cancel seeded deliveries, inspect deterministic risk explanations, and record human decisions. Data and events persist only in the current browser.
 
@@ -64,7 +64,7 @@ User input → React state → deterministic forecast/risk checks → visible ex
 - Current operational baseline: not measured; no survey, interview or timing dataset is claimed.
 - Primary KPI: median minutes to reconcile a confirmed order with inventory.
 - Supporting KPIs: order-to-stock mismatch rate and stock-risk alert precision.
-- Proposed pilot target: at least 30% lower median reconciliation time without increasing mismatch rate. This is a proposed test target from the team proposal, not achieved impact.
+- Proposed pilot target: at least 30% lower median reconciliation time without increasing mismatch rate. This is a proposed test target from our proposal, not achieved impact.
 - SDG source: [UN Goal 8](https://sdgs.un.org/goals/goal8), targets 8.2 and 8.3.
 
 ## Observed challenges and lessons
@@ -83,12 +83,12 @@ The Vite configuration requires PORT and BASE_PATH before evaluation. The Replit
 | Geng Ruixi | UI design and illustration, product testing and PPT production | @Geng0119 |
 | Gao Zijun | Material synthesis and pitch-deck production, product testing and PPT production | @Skyler-Quinn |
 
-Roles are team declarations, not independently verified work logs. Work may overlap. We confirm that Zhou Xiaduo and Geng Ruixi jointly created the StockLink logo using ChatGPT image generation, then manually optimized and retouched it with drawing software.
+We list these roles as responsibilities, rather than independently verified work logs. Work may overlap. We confirm that Zhou Xiaduo and Geng Ruixi jointly created the StockLink logo using ChatGPT image generation, then manually optimized and retouched it with drawing software.
 
 ## Submission status and deadline
 
-Orientation slides 28–30 list six deliverables: official PRD, pitch deck, accessible live prototype, Tech and Tools Declaration, public GitHub link, and a 5–7 minute YouTube pitch containing a prototype demo. Replit usage proof is included in the declaration. RunPod evidence applies to GPU work; this team reports no RunPod use or GPU workload.
+Orientation slides 28–30 list six deliverables: official PRD, pitch deck, accessible live prototype, Tech and Tools Declaration, public GitHub link, and a 5–7 minute YouTube pitch containing a prototype demo. Replit usage proof is included in the declaration. RunPod evidence applies to GPU work; we report no RunPod use or GPU workload.
 
 The stated deadline is 25 October 2026 at 07:59:59 MYT (UTC+8). The orientation says no late submission, no resubmission and no repository changes after the deadline; Terms and Conditions prevail if requirements conflict. Official submission occurs through sdchack.my, once per team. Repository publication is not official submission.
 
-The repository provides the live build, public source, Apache-2.0 license and Replit URL evidence. The team confirms that the pitch deck, official PRD and official technical declaration are not completed, the YouTube video is not uploaded, and committee accounts are not yet added. Replit sponsor credits and guidance from Dr. Chin Shin Liang are team-confirmed. Workshop completion and organizer acceptance are not independently verified here.
+The repository provides the live build, public source, Apache-2.0 license, Replit URL evidence and the three supplied PDFs in submission. Our [pitch deck](../submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) is in submission and our [pitch video](https://youtu.be/a2iZmWnK0s8) is uploaded to YouTube. We chose not to add committee accounts during this preparation. We confirm completion of all mandatory GenAI, Database and Cloud workshops, no pre-existing core project, and no employment or internship IP conflict. Replit sponsor credits and guidance from Dr. Chin Shin Liang are team-confirmed. Organizer receipt and acceptance have not been confirmed.

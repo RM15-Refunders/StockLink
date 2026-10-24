@@ -2,6 +2,10 @@
 
 StockLink is a browser-local order and inventory demo for the fictional Kopi Corner workspace, developed and published on Replit by RM15 Refunders.
 
+## Presentation and submission
+
+Our [pitch video](https://youtu.be/a2iZmWnK0s8) and [pitch deck](submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) are available. Original documents are archived in [submission](submission/README.md).
+
 ## Run and validate
 
 Use Node.js 24 and pnpm 10.26.1 from the repository root on Linux x64 or WSL2.
@@ -10,15 +14,15 @@ Use Node.js 24 and pnpm 10.26.1 from the repository root on Linux x64 or WSL2.
 - Frontend: `PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run dev`
 - Validate and build: `PORT=3000 BASE_PATH=/ pnpm run build`
 
-PORT and BASE_PATH must be set before Vite configuration loads. The frontend demo does not require a running API, DATABASE_URL or an AI key. Static output is artifacts/stocklink/dist/public/.
+PORT and BASE_PATH must be set before Vite configuration loads. The frontend demo does not require a running API, DATABASE_URL or an AI key. Static output is src/artifacts/stocklink/dist/public/.
 
 ## Stack and repository map
 
-- artifacts/stocklink/src/App.tsx: React 19, TypeScript, five views and deterministic forecast logic.
-- artifacts/stocklink/src/brand-theme.css: StockLink brand styling.
-- artifacts/stocklink/public/: public brand assets.
+- src/artifacts/stocklink/src/App.tsx: React 19, TypeScript, five views and deterministic forecast logic.
+- src/artifacts/stocklink/src/brand-theme.css: StockLink brand styling.
+- src/artifacts/stocklink/public/: public brand assets.
 - Browser localStorage key stocklink-demo-v1: demo state and events.
-- artifacts/api-server and lib/: API/DB scaffolding and generated contracts, not the active inventory persistence layer.
+- src/artifacts/api-server and src/lib/: API/DB scaffolding and generated contracts, not the active inventory persistence layer.
 - docs/replit-usage-evidence.md: verified deployment link and Replit use statement.
 
 ## Product and implementation decisions
