@@ -17,7 +17,7 @@ The prototype uses synthetic demonstration data stored locally in the browser. I
 
 The public Replit deployment is the selected usage evidence, corresponding to orientation slide 29. The project link is provided as supporting context; access to its editor or internal history may depend on Replit account permissions. A reviewer can open the live URL without an application login and inspect the functional views.
 
-This statement does not claim a particular credit balance, amount spent or workshop attendance. No credit-usage screenshot is required for the selected live-URL evidence unless the organizers request additional verification.
+The team confirms that Replit sponsor credits were used. This statement does not claim a particular credit balance, amount spent or workshop attendance. No credit-usage screenshot is required for the selected live-URL evidence unless the organizers request additional verification.
 
 ## RunPod declaration
 

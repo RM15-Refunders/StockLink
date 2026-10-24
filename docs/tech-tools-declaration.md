@@ -31,6 +31,7 @@ Dependency declarations and resolved versions are recorded in package manifests 
 |---|---|
 | Replit Agent | Prototype/UI implementation, brand styling, code changes and build/preview checks, as reflected in Replit agent messages and commit history |
 | OpenAI ChatGPT / Codex | Assistance with GitHub migration, documentation, CI configuration, license compliance and review of submission drafts |
+| ChatGPT image generation | StockLink logo generation by Zhou Xiaduo and Geng Ruixi, followed by their manual optimization and retouching in drawing software |
 
 These are development assistants, not AI services embedded in the public application. The precise upstream model identifiers and versions are not recorded in the repository artifacts reviewed here; this disclosure does not guess them. The team must reconcile this record with its tool/account history for the official declaration. Additional tools are not asserted without team confirmation.
 
@@ -40,11 +41,11 @@ The team is responsible for reviewing/adapting generated work, checking correctn
 
 The Kopi Corner ingredients, orders, suppliers, recipes and quantities are synthetic seed records in App.tsx. No real customer dataset, personal record collection or external training dataset is used by the demo. Sample prices are illustrative assumptions, not measured business values.
 
-The StockLink logo asset is included at artifacts/stocklink/public/stocklink-logo.jpg. The supplied development record shows it was provided as a brand reference; its original creation tool and ownership evidence were not included in the reviewed repository. The team must retain appropriate asset rights and disclose any asset-generation tool actually used. UI icons come from Lucide; third-party assets retain their own notices.
+The team confirms that the StockLink logo was jointly created by Zhou Xiaduo (周夏朵) and Geng Ruixi (耿睿茜) using ChatGPT image generation. They subsequently optimized and retouched the generated image themselves with drawing software. The finished asset is artifacts/stocklink/public/stocklink-logo.jpg. The specific drawing-software product and underlying image-model version were not supplied; neither is guessed here. This describes the reported creation process and team contributions, rather than an independent legal determination of asset rights. UI icons come from Lucide; third-party assets retain their own notices.
 
 ## Sponsor resources and human assistance
 
-Replit usage is evidenced by the published deployment and development project. A particular credit balance, amount spent, voucher redemption or mentorship session is not evidenced by those URLs and is not claimed in this disclosure. No RunPod credit consumption is claimed.
+Replit usage is evidenced by the published deployment and development project. The team confirms that it used the hackathon Replit sponsor credits and received guidance from Dr. Chin Shin Liang. These two facts are team-reported; the live URLs do not prove credit expenditure or attendance. No exact credit balance, amount spent or detailed mentorship content is claimed. RunPod was not used and no RunPod credit consumption is claimed.
 
 ## License and links
 
@@ -54,3 +55,7 @@ The project license is [Apache-2.0](../LICENSE), with [NOTICE](../NOTICE). Depen
 - Replit project: https://replit.com/@WilliamWang185/StockLink
 - Source repository: https://github.com/RM15-Refunders/StockLink
 - Replit usage evidence: [statement and links](replit-usage-evidence.md)
+
+## Official submission status
+
+The team confirms that its official PRD and technical tools declaration are not yet completed. The pitch deck is not completed, the YouTube pitching video is not uploaded, and the committee GitHub accounts have not been added. This repository disclosure is supporting evidence and does not mark those deliverables as completed.

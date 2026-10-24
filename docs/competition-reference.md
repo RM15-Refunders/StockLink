@@ -25,11 +25,14 @@ This page describes the implemented prototype and the evidence available in this
 | Public source repository | https://github.com/RM15-Refunders/StockLink |
 | Project license | [Apache License 2.0](../LICENSE), with [NOTICE](../NOTICE) |
 | Build validation | [GitHub Actions CI](https://github.com/RM15-Refunders/StockLink/actions/workflows/ci.yml) |
+| Replit sponsor credits | Used, as confirmed by the team; no balance or amount spent is claimed |
+| Mentor guidance | Dr. Chin Shin Liang, as reported by the team |
+| Committee collaborators | Not added yet, as confirmed by the team; exact GitHub accounts and required roles have not been supplied |
 | RunPod | Not used. No GPU training, fine-tuning or model inference; no endpoint or GPU runtime exists to declare |
-| PRD / preliminary proposal | A public-redacted proposal draft was supplied for review; a final official PDF and submission receipt are not present in this repository |
-| Technical tools declaration | [Repository disclosure](tech-tools-declaration.md); not a signed organizer form |
-| Pitch deck | No public deck file or link has been supplied to this repository |
-| Pitching video | No YouTube video link has been supplied to this repository |
+| PRD / preliminary proposal | Not completed, as confirmed by the team. The reviewed public-redacted draft is not a final official submission |
+| Technical tools declaration | Official declaration not completed. [Repository disclosure](tech-tools-declaration.md) is supporting documentation only |
+| Pitch deck | Not completed, as confirmed by the team |
+| Pitching video | Not uploaded, as confirmed by the team |
 
 ## Problem and implemented solution
 
@@ -80,7 +83,7 @@ The Vite configuration requires PORT and BASE_PATH before evaluation. The Replit
 | Geng Ruixi | UI design and illustration, product testing and PPT production | @Geng0119 |
 | Gao Zijun | Material synthesis and pitch-deck production, product testing and PPT production | @Skyler-Quinn |
 
-Roles are team declarations, not independently verified work logs. Work may overlap.
+Roles are team declarations, not independently verified work logs. Work may overlap. The team confirms that Zhou Xiaduo (周夏朵) and Geng Ruixi (耿睿茜) jointly created the StockLink logo using ChatGPT image generation, then manually optimized and retouched it with drawing software.
 
 ## Submission status and deadline
 
@@ -88,4 +91,4 @@ Orientation slides 28–30 list six deliverables: official PRD, pitch deck, acce
 
 The stated deadline is 25 October 2026 at 07:59:59 MYT (UTC+8). The orientation says no late submission, no resubmission and no repository changes after the deadline; Terms and Conditions prevail if requirements conflict. Official submission occurs through sdchack.my, once per team. Repository publication is not official submission.
 
-The repository provides the live build, public source, Apache-2.0 license and Replit URL evidence. Final form completion, workshop attendance, committee collaborator access, deck/video delivery and organizer acceptance require team records; completion is not asserted here.
+The repository provides the live build, public source, Apache-2.0 license and Replit URL evidence. The team confirms that the pitch deck, official PRD and official technical declaration are not completed, the YouTube video is not uploaded, and committee accounts are not yet added. Replit sponsor credits and guidance from Dr. Chin Shin Liang are team-confirmed. Workshop completion and organizer acceptance are not independently verified here.
