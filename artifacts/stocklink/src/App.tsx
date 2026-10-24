@@ -49,7 +49,7 @@ const nav = [
 ];
 const money = (n: number) => `RM ${n.toFixed(2)}`;
 const niceDate = (s: string) => new Date(`${s}T12:00:00`).toLocaleDateString('en-MY', { day: 'numeric', month: 'short' });
-const fmt = (n: number) => Number.isInteger(n) ? `${n}` : n.toFixed(1);
+const fmt = (n: number) => new Intl.NumberFormat('en-MY', { maximumFractionDigits: 3 }).format(n);
 const getInitial = (): Store => {
  try { const stored = localStorage.getItem(STORE_KEY); if (stored) return JSON.parse(stored) as Store; } catch { /* use demo seed */ }
  return structuredClone(seed);
@@ -79,24 +79,48 @@ function App() {
   order.lines.forEach((line) => Object.entries(store.recipes[line.product] ?? {}).forEach(([id, usage]) => { d[id] = (d[id] ?? 0) + usage * line.quantity; }));
   return d;
  };
- const forecastAt = (item: Ingredient, day: number) => {
-  const forecastDate = dateOffset(Math.floor(day));
-  const orderDemand = store.orders.filter((o) => o.status === 'confirmed' && o.date >= dateOffset(0) && o.date <= forecastDate).reduce((sum, o) => sum + (demandForOrder(o)[item.id] ?? 0), 0);
-  const received = store.deliveries.filter((d) => d.status === 'open' && d.date <= forecastDate).reduce((sum, d) => sum + d.lines.filter((l) => l.itemId === item.id).reduce((a, l) => a + l.quantity, 0), 0);
-  return item.stock - item.daily * day - orderDemand + received;
+ const forecastComponents = (item: Ingredient, day: number, includeSameDayDeliveries = true) => {
+  const wholeDays = Math.floor(day);
+  const fractionalDay = day - wholeDays;
+  const today = dateOffset(0);
+  let projected = item.stock;
+  let orderDemand = 0;
+  let deliveryQuantity = 0;
+  for (let offset = 0; offset <= wholeDays; offset += 1) {
+   const scheduledDate = dateOffset(offset);
+   if (offset > 0) projected -= item.daily;
+   const dayOrderDemand = store.orders.filter((o) => o.status === 'confirmed' && o.date === scheduledDate).reduce((sum, o) => sum + (demandForOrder(o)[item.id] ?? 0), 0);
+   orderDemand += dayOrderDemand;
+   projected -= dayOrderDemand;
+   const sameDayArrivals = store.deliveries.filter((d) => d.status === 'open' && d.date === scheduledDate).reduce((sum, d) => sum + d.lines.filter((l) => l.itemId === item.id).reduce((total, line) => total + line.quantity, 0), 0);
+   const overdueArrivals = offset === 0 ? store.deliveries.filter((d) => d.status === 'open' && d.date < today).reduce((sum, d) => sum + d.lines.filter((l) => l.itemId === item.id).reduce((total, line) => total + line.quantity, 0), 0) : 0;
+   const arrivalsToApply = offset < wholeDays || includeSameDayDeliveries ? sameDayArrivals : 0;
+   deliveryQuantity += arrivalsToApply + overdueArrivals;
+   projected += arrivalsToApply + overdueArrivals;
+  }
+  projected -= item.daily * fractionalDay;
+  return { orderDemand, deliveryQuantity, projected };
  };
+ const forecastAt = (item: Ingredient, day: number) => forecastComponents(item, day).projected;
  const riskInfo = (item: Ingredient) => {
   let days = Infinity;
+  let preDeliveryStock: number | null = null;
   for (let step = 0; step <= 140; step += 1) {
    const projectedDay = step / 20;
-   if (forecastAt(item, projectedDay) < item.safety) { days = projectedDay; break; }
+   const beforeSameDayDelivery = forecastComponents(item, projectedDay, false).projected;
+   const afterSameDayDelivery = forecastAt(item, projectedDay);
+   if (beforeSameDayDelivery < item.safety || afterSameDayDelivery < item.safety) {
+    days = projectedDay;
+    preDeliveryStock = beforeSameDayDelivery;
+    break;
+   }
   }
   const baselineDays = item.daily > 0 ? Math.max(0, (item.stock - item.safety) / item.daily) : Infinity;
   const nextDelivery = store.deliveries.filter((d) => d.status === 'open').flatMap((d) => d.lines.filter((l) => l.itemId === item.id).map(() => ({ date: d.date, quantity: d.lines.filter((l) => l.itemId === item.id).reduce((a, l) => a + l.quantity, 0) }))).sort((a, b) => a.date.localeCompare(b.date))[0];
   const lead = nextDelivery ? Math.max(0, Math.round((new Date(`${nextDelivery.date}T12:00:00`).getTime() - new Date(`${dateOffset(0)}T12:00:00`).getTime()) / DAY)) : null;
   const orderDemandBeforeDelivery = lead === null ? 0 : store.orders.filter((o) => o.status === 'confirmed' && o.date >= dateOffset(0) && o.date < nextDelivery!.date).reduce((sum, o) => sum + (demandForOrder(o)[item.id] ?? 0), 0);
   const before = lead === null ? null : item.stock - item.daily * lead - orderDemandBeforeDelivery;
-  return { days, baselineDays, nextDelivery, lead, before, orderDemandBeforeDelivery };
+  return { days, baselineDays, nextDelivery, lead, before, orderDemandBeforeDelivery, preDeliveryStock };
  };
  const saveOrder = (order: Order) => update((s) => {
   const exists = s.orders.some((o) => o.id === order.id);
@@ -138,7 +162,7 @@ function App() {
 
  function Overview() {
   const openDeliveries = store.deliveries.filter((d) => d.status === 'open');
-  const riskItems = store.inventory.map((item) => ({ item, risk: riskInfo(item) })).filter(({ item, risk }) => risk.days <= 7 || forecastAt(item, 7) < item.safety);
+  const riskItems = store.inventory.map((item) => ({ item, risk: riskInfo(item) })).filter(({ risk }) => risk.days <= 7);
   const confirmedCount = store.orders.filter((o) => o.status === 'confirmed').length;
   const valueEstimate = store.inventory.reduce((sum, i) => sum + i.stock * (i.id === 'milk' ? 4.8 : i.id === 'beans' ? 78 : .22), 0);
   return <>{header('KOPI CORNER · DAILY BRIEFING', 'Good morning, here’s the stock picture.', `A clear view of what needs attention · ${latestDate}`, button('Create an order', () => setModal({ type: 'order' }), true, <Plus size={16} />, 'button-create-order'))}
@@ -157,7 +181,7 @@ function App() {
      </div>
      <div className="card risk-card"><div className="risk-head"><div><h2 className="section-title">At-risk items</h2><div className="section-caption">Plain-language timing, not just a warning</div></div><Link href="/inventory" className="btn btn-small btn-quiet" data-testid="link-view-inventory">Inventory <ArrowRight size={14}/></Link></div>
       {riskItems.length ? riskItems.map(({ item, risk }) => <div className="risk-item" key={item.id} data-testid={`risk-item-${item.id}`}><div className="risk-row"><div><div className="risk-name">{item.name} <span className="pill pill-risk" style={{ marginLeft: 6 }}>At risk</span></div><div className="risk-meta">On hand {fmt(item.stock)} {item.unit} · safety {fmt(item.safety)} {item.unit} · baseline {fmt(item.daily)} {item.unit}/day</div></div><div className="risk-number">{risk.days.toFixed(1)} days to safety</div></div>
-       {item.id === 'milk' && risk.lead !== null ? <div className="plain-math" data-testid="milk-risk-arithmetic">Safety crossed in about {risk.days.toFixed(1)} days. At day {risk.lead}, before delivery: {fmt(item.stock)} − ({fmt(item.daily)} × {risk.lead}){risk.orderDemandBeforeDelivery > 0 ? ` − ${fmt(risk.orderDemandBeforeDelivery)} confirmed-order demand` : ''} = {fmt(risk.before ?? 0)} {item.unit}. Delivery of {risk.nextDelivery?.quantity} {item.unit} is due in {risk.lead} days, so demand creates a stockout gap before it arrives.</div> : <div className="plain-math">Baseline alone: ({fmt(item.stock)} − {fmt(item.safety)}) ÷ {fmt(item.daily)} = about {risk.baselineDays.toFixed(1)} days to safety. {risk.nextDelivery && risk.lead !== null ? `A delivery of ${fmt(risk.nextDelivery.quantity)} ${item.unit} is expected in ${risk.lead} days. By day 7: ${fmt(item.stock)} − (${fmt(item.daily)} × 7) − confirmed-order demand + due deliveries = ${fmt(forecastAt(item, 7))} ${item.unit}, below ${fmt(item.safety)} ${item.unit} safety.` : 'No open delivery is scheduled; demand continues against current on-hand stock.'}</div>}
+       {item.id === 'milk' && risk.lead !== null ? <div className="plain-math" data-testid="milk-risk-arithmetic">Safety crossed in about {risk.days.toFixed(1)} days. At day {risk.lead}, before delivery: {fmt(item.stock)} − ({fmt(item.daily)} × {risk.lead}){risk.orderDemandBeforeDelivery > 0 ? ` − ${fmt(risk.orderDemandBeforeDelivery)} confirmed-order demand` : ''} = {fmt(risk.before ?? 0)} {item.unit}. Delivery of {fmt(risk.nextDelivery?.quantity ?? 0)} {item.unit} is due in {risk.lead} days, so demand creates a stockout gap before it arrives.</div> : <div className="plain-math">In the day-by-day forecast, stock first falls below safety in about {risk.days.toFixed(1)} days. Before any delivery due that day, projected stock is {fmt(risk.preDeliveryStock ?? 0)} {item.unit} versus {fmt(item.safety)} {item.unit} safety; confirmed-order demand and earlier deliveries are included.</div>}
        {store.recommendations.filter((r) => r.itemId === item.id && r.status === 'pending').map((r) => <div className="recommendation" key={r.id}><strong>Human review · {r.title}</strong><p>{r.body}</p><div className="actions">{button('Approve suggestion', () => decideRecommendation(r, 'approved'), true, <Check size={14}/>, `button-approve-${r.id}`)}{button('Reject', () => decideRecommendation(r, 'rejected'), false, <X size={14}/>, `button-reject-${r.id}`)}</div></div>)}
       </div>) : <div className="empty-state"><div className="empty-icon"><Check size={20}/></div><strong>Nothing needs attention</strong><div className="section-caption">Current stock stays above safety for the next 7 days.</div></div>}
      </div>
@@ -184,10 +208,13 @@ function App() {
  }
 
  function InventoryPage() {
-  const items = store.inventory.filter((i) => (filter === 'all' || (filter === 'risk' ? forecastAt(i, 7) < i.safety : forecastAt(i, 7) >= i.safety)) && `${i.name} ${i.unit}`.toLowerCase().includes(search.toLowerCase()));
+  const items = store.inventory.filter((i) => {
+   const atRisk = riskInfo(i).days <= 7;
+   return (filter === 'all' || (filter === 'risk' ? atRisk : !atRisk)) && `${i.name} ${i.unit}`.toLowerCase().includes(search.toLowerCase());
+  });
   return <>{header('KOPI CORNER · STOCK ROOM', 'Inventory', 'On-hand quantities, buffers and demand assumptions.', <span className="pill pill-safe"><span className="status-dot" style={{ background: '#47765a' }}/>Updated in this browser</span>)}
    <div className="card table-card"><div className="table-toolbar"><div className="search-wrap"><Search size={15}/><input className="search" placeholder="Search ingredients…" value={search} onChange={(e) => setSearch(e.target.value)} data-testid="input-search-inventory"/></div><select className="select" value={filter} onChange={(e) => setFilter(e.target.value)} aria-label="Filter inventory" data-testid="select-inventory-filter"><option value="all">All ingredients</option><option value="risk">At risk in 7 days</option><option value="safe">Above safety in 7 days</option></select></div>
-    {!items.length ? <Empty icon={<Boxes size={19}/>} title="No ingredients found" detail="Adjust your filters or search another term."/> : <div className="table-scroll"><table><thead><tr><th>Ingredient</th><th>On hand</th><th>Safety stock</th><th>Baseline / day</th><th>7-day outlook</th><th>Actions</th></tr></thead><tbody>{items.map((i) => { const forecast = forecastAt(i, 7); const risk = riskInfo(i); const pct = Math.max(4, Math.min(100, i.stock / Math.max(i.safety * 2, 1) * 100)); return <tr key={i.id} data-testid={`row-inventory-${i.id}`}><td><div className="row-title">{i.name}</div><div className="row-sub">{recipeUsage(i.id)}</div></td><td><div className="stock-cell">{fmt(i.stock)} <span className="row-sub">{i.unit}</span></div><div className="progress"><span style={{ width: `${pct}%`, background: i.stock < i.safety ? '#b75d49' : '#d5964f' }}/></div></td><td>{fmt(i.safety)} {i.unit}</td><td>{fmt(i.daily)} {i.unit}</td><td><span className={`pill ${forecast < i.safety ? 'pill-risk' : 'pill-safe'}`}>{fmt(forecast)} {i.unit}</span><div className="row-sub">{forecast < i.safety ? `By day 7: ${fmt(i.stock)} − (${fmt(i.daily)} × 7) − confirmed-order demand + due deliveries = ${fmt(forecast)} ${i.unit}, below ${fmt(i.safety)} ${i.unit} safety.` : 'Above safety through day 7.'}</div><div className="row-sub">{forecast < i.safety ? `Baseline alone crosses safety in about ${risk.baselineDays.toFixed(1)} days.` : 'Baseline stock remains above buffer.'}</div></td><td><div className="list-actions">{button('Adjust', () => setModal({ type: 'adjust', id: i.id }), false, <SlidersHorizontal size={13}/>, `button-adjust-${i.id}`)}{button('Edit rules', () => setModal({ type: 'inventory', id: i.id }), false, <Settings2 size={13}/>, `button-edit-rules-${i.id}`)}</div></td></tr>; })}</tbody></table></div>}
+     {!items.length ? <Empty icon={<Boxes size={19}/>} title="No ingredients found" detail="Adjust your filters or search another term."/> : <div className="table-scroll"><table><thead><tr><th>Ingredient</th><th>On hand</th><th>Safety stock</th><th>Baseline / day</th><th>7-day outlook</th><th>Actions</th></tr></thead><tbody>{items.map((i) => { const breakdown = forecastComponents(i, 7); const forecast = breakdown.projected; const risk = riskInfo(i); const atRisk = risk.days <= 7; const pct = Math.max(4, Math.min(100, i.stock / Math.max(i.safety * 2, 1) * 100)); return <tr key={i.id} data-testid={`row-inventory-${i.id}`}><td><div className="row-title">{i.name}</div><div className="row-sub">{recipeUsage(i.id)}</div></td><td><div className="stock-cell">{fmt(i.stock)} <span className="row-sub">{i.unit}</span></div><div className="progress"><span style={{ width: `${pct}%`, background: i.stock < i.safety ? '#b75d49' : '#d5964f' }}/></div></td><td>{fmt(i.safety)} {i.unit}</td><td>{fmt(i.daily)} {i.unit}</td><td><span className={`pill ${forecast < i.safety ? 'pill-risk' : 'pill-safe'}`}>{fmt(forecast)} {i.unit}</span><div className="row-sub" data-testid={`forecast-explanation-${i.id}`}>Day 7: {fmt(i.stock)} − ({fmt(i.daily)} × 7) − {fmt(breakdown.orderDemand)} confirmed-order demand + {fmt(breakdown.deliveryQuantity)} due deliveries = {fmt(forecast)} {i.unit}, {forecast < i.safety ? 'below' : 'above'} {fmt(i.safety)} {i.unit} safety.</div><div className="row-sub">{atRisk ? `Earlier in the day-by-day forecast, stock first falls below safety in about ${risk.days.toFixed(1)} days; same-day deliveries are counted after the pre-delivery check.` : `No day in the 7-day forecast falls below ${fmt(i.safety)} ${i.unit} safety.`}</div></td><td><div className="list-actions">{button('Adjust', () => setModal({ type: 'adjust', id: i.id }), false, <SlidersHorizontal size={13}/>, `button-adjust-${i.id}`)}{button('Edit rules', () => setModal({ type: 'inventory', id: i.id }), false, <Settings2 size={13}/>, `button-edit-rules-${i.id}`)}</div></td></tr>; })}</tbody></table></div>}
    </div>
    <div className="card" style={{ marginTop: 16 }}><div className="section-head"><div><h2 className="section-title">How this forecast works</h2><div className="section-caption">Transparent, editable assumptions</div></div><Gauge size={17} color="#557661"/></div><p className="section-caption" style={{ lineHeight: 1.7 }}>Projected on hand = current stock − baseline daily demand × days − confirmed order recipe demand + open delivery quantities due by that date. Draft orders are excluded. Safety stock is a warning threshold, not additional stock. Forecast is indicative and assumes deliveries arrive on schedule.</p></div>
   </>;
