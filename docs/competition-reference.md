@@ -25,14 +25,14 @@ This page describes the implemented prototype and the evidence available in this
 | Public source repository | https://github.com/RM15-Refunders/StockLink |
 | Project license | [Apache License 2.0](../LICENSE), with [NOTICE](../NOTICE) |
 | Build validation | [GitHub Actions CI](https://github.com/RM15-Refunders/StockLink/actions/workflows/ci.yml) |
-| Replit sponsor credits | Used, as confirmed by the team; no balance or amount spent is claimed |
-| Mentor guidance | Dr. Chin Shin Liang, as reported by the team |
-| Committee collaborators | Not added yet, as confirmed by the team; exact GitHub accounts and required roles have not been supplied |
+| Replit sponsor credits | Used; no balance or amount spent is claimed |
+| Mentor guidance | Dr. Chin Shin Liang |
+| Committee collaborators | None |
 | RunPod | Not used. No GPU training, fine-tuning or model inference; no endpoint or GPU runtime exists to declare |
-| PRD / preliminary proposal | Not completed, as confirmed by the team. The reviewed public-redacted draft is not a final official submission |
+| PRD / preliminary proposal | Not completed. The reviewed public-redacted draft is not a final official submission |
 | Technical tools declaration | Official declaration not completed. [Repository disclosure](tech-tools-declaration.md) is supporting documentation only |
-| Pitch deck | Not completed, as confirmed by the team |
-| Pitching video | Not uploaded, as confirmed by the team |
+| Pitch deck | Not completed |
+| Pitching video | Not uploaded |
 
 ## Problem and implemented solution
 
@@ -83,7 +83,7 @@ The Vite configuration requires PORT and BASE_PATH before evaluation. The Replit
 | Geng Ruixi | UI design and illustration, product testing and PPT production | @Geng0119 |
 | Gao Zijun | Material synthesis and pitch-deck production, product testing and PPT production | @Skyler-Quinn |
 
-Roles are team declarations, not independently verified work logs. Work may overlap. The team confirms that Zhou Xiaduo (周夏朵) and Geng Ruixi (耿睿茜) jointly created the StockLink logo using ChatGPT image generation, then manually optimized and retouched it with drawing software.
+Roles are team declarations, not independently verified work logs. Work may overlap. We confirm that Zhou Xiaduo and Geng Ruixi jointly created the StockLink logo using ChatGPT image generation, then manually optimized and retouched it with drawing software.
 
 ## Submission status and deadline
 
