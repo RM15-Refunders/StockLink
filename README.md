@@ -14,7 +14,7 @@
 | Number of members | 5 |
 | Team members | Wang Yanfeng; Liu Jiaming; Zhou Xiaduo; Geng Ruixi; Gao Zijun |
 
-Member roles and GitHub usernames are still to be added. Do not publish personal email addresses in this README.
+Work may overlap where the team needs to collaborate.
 
 ## Links
 
@@ -135,11 +135,11 @@ Potential areas to evaluate include supplier follow-up workflows, configurable s
 
 | Name | Role | GitHub username |
 |---|---|---|
-| Wang Yanfeng | Team leader; specific project role to be confirmed | To be added |
-| Liu Jiaming | To be confirmed | To be added |
-| Zhou Xiaduo | To be confirmed | To be added |
-| Geng Ruixi | To be confirmed | To be added |
-| Gao Zijun | To be confirmed | To be added |
+| Wang Yanfeng | GitHub framework, programming, AI-tool research, and video explanation | @WilliamWang185 |
+| Liu Jiaming | Market research, pitch presentation, and recording the video narration | @liujiaming-maker |
+| Zhou Xiaduo | User interface design and illustration | @XIA1969 |
+| Geng Ruixi | User interface design and illustration | @Geng0119 |
+| Gao Zijun | Synthesize final materials; build and produce the pitch deck | @Skyler-Quinn |
 
 ## Submission Checklist
 
@@ -153,7 +153,7 @@ The provided tutorial also asks the team to complete these repository items. Con
 - [ ] Record a 5–7 minute pitching video with a prototype demo and upload it to YouTube.
 - [ ] Add the actual Replit and RunPod usage descriptions and required proof-of-use PDFs, following the organizer's format.
 - [ ] Add verified setup and run instructions and the actual project files.
-- [ ] Add team roles and GitHub usernames after the members provide them.
+- [ ] Confirm each team member’s GitHub access to the repository.
 - [ ] Check that no secrets or API keys are committed.
 - [ ] Select and add an appropriate open-source license.
 - [ ] Rename submission files with the team's name as required by the tutorial.
