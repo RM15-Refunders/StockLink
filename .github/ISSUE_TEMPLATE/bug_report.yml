@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a reproducible StockLink problem with fictional data.
+title: "[Bug] "
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include view, demo state and fictional inputs. Never include secrets or real customer data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS, mobile/desktop and commit if known
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or sanitized logs

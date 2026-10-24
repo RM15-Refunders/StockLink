@@ -1,170 +1,89 @@
+<p align="center"><img src="artifacts/stocklink/public/stocklink-logo.jpg" alt="StockLink" width="160"></p>
+
 # StockLink
 
-## Current Prototype
+**Connect orders to stock. See risk early. Keep people in control.**
 
-The Replit prototype source is included in this repository. The application is in `artifacts/stocklink/` and uses React, TypeScript, and Vite. The planning and submission sections below remain team reference; not every planned integration is implemented.
+An inventory and order-management prototype for Malaysian micro and small businesses. The Kopi Corner demo connects confirmed orders, recipe quantities, on-hand inventory and incoming deliveries in an explainable seven-day stock forecast.
 
-- Replit project: https://replit.com/@WilliamWang185/StockLink
-- Prerequisites: Node.js 22.22 or newer and pnpm 10 (commands below use a POSIX shell).
-- Install dependencies: `pnpm install --frozen-lockfile`
-- Start the app: `PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run dev`
-- Check types and build: `PORT=3000 BASE_PATH=/ pnpm run build`
+[Live demo](https://stock-link.replit.app/) · [Replit](https://replit.com/@WilliamWang185/StockLink) · [中文说明](docs/README.zh-CN.md) · [Demo guide](docs/demo-guide.md) · [Architecture](docs/architecture.md)
 
-> StockLink connects customer orders with inventory and warns Malaysian micro and small businesses about stock risks, while keeping decisions under human control.
+[![CI](https://github.com/RM15-Refunders/StockLink/actions/workflows/ci.yml/badge.svg)](https://github.com/RM15-Refunders/StockLink/actions/workflows/ci.yml)
 
-## Team Information
+## Implemented features
 
-| Field | Details |
+| View | Current behavior |
 |---|---|
-| Team name | RM15 Refunders |
-| Team domain | Domain 2 - ALPHA RED |
-| SDG track | SDG 8 — Decent Work and Economic Growth (Targets 8.2 and 8.3) |
-| Team leader | Wang Yanfeng |
-| University | Xiamen University Malaysia |
-| Number of members | 5 |
-| Team members | Wang Yanfeng; Liu Jiaming; Zhou Xiaduo; Geng Ruixi; Gao Zijun |
+| Overview | Seven-day forecast, risk explanations, open deliveries and human-reviewed suggestions |
+| Orders | Create/edit drafts, confirm or cancel orders, edit per-drink recipes |
+| Inventory | Edit stock, safety thresholds and baseline demand; record adjustments and inspect arithmetic |
+| Deliveries | Review seeded purchase orders; receive quantities or cancel open deliveries |
+| Activity | Browser-local changes and recommendation decisions |
 
-Work may overlap where the team needs to collaborate.
+**Scope:** synthetic, browser-local data persisted in localStorage. No authentication, shared business database, live AI, automatic purchasing or supplier messaging. Approving a suggestion records a decision only. API and database packages are scaffolding, not the persistence layer used by this interface.
 
-## Links
+## Run locally
 
-| Resource | Link / status |
-|---|---|
-| GitHub repository | https://github.com/RM15-Refunders/StockLink |
-| Live prototype | To be added after deployment |
-| Replit project | https://replit.com/@WilliamWang185/StockLink |
-| RunPod endpoint | To be added if using RunPod |
-| Pitch deck | To be added |
-| Pitching video (5–7 minutes) | To be added after uploading to YouTube |
+Use **Linux x64** (Windows: WSL2), **Node.js 24**, and **pnpm 10.26.1**. Current native dependency overrides exclude other platforms; native Windows/macOS are not validated. Node.js 22.22 also passed the Replit build.
 
-## Overview
+```sh
+git clone https://github.com/RM15-Refunders/StockLink.git
+cd StockLink
+pnpm install --frozen-lockfile
+PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run dev
+```
 
-### Problem
+Open http://localhost:3000. Run commands from the root using pnpm; dependencies use workspace packages and a shared catalog.
 
-Micro and small business owners and small teams in Malaysia often manage customer orders, stock levels, supplier deliveries, and follow-ups across WhatsApp, spreadsheets, paper records, and manual checks. Because these records are disconnected, teams can confirm orders without enough stock, miss replenishment gaps, or discover too late that an incoming delivery will arrive after stock runs out.
+```sh
+pnpm run typecheck
+PORT=3000 BASE_PATH=/ pnpm run build
+PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run serve
+```
 
-### Proposed AI-enabled solution
+The full build includes type checks. Static output: `artifacts/stocklink/dist/public/`. Static hosting needs index.html fallback for client routes such as /orders. A build does not publish the live Replit deployment.
 
-StockLink is planned as a reliable, easy-to-learn workflow connecting customer orders with current inventory and incoming purchase orders. A possible AI role is to turn an order message into a structured draft containing items, quantities, and requested dates; a person reviews and confirms that draft. Stock calculations and alert thresholds should remain traceable and deterministic, with the reason and source data shown for each warning. The team still needs to confirm whether this AI-assisted input step will be part of the prototype and name the actual model or service used. No AI integration is currently documented in this repository.
-
-### Target users
-
-Owners and small teams at micro and small businesses in Malaysia, especially businesses that track products or ingredients, customer orders, and supplier deliveries.
-
-### SDG alignment
-
-- **Primary: SDG 8 — Decent Work and Economic Growth.** Target 8.2: improve productivity through technology and innovation. Target 8.3: support entrepreneurship and the growth of micro, small, and medium-sized enterprises.
-- **Related: SDG 9 — Industry, Innovation and Infrastructure.** The project explores practical digital infrastructure for small business operations.
-- Add SDG 10 or SDG 12 only if the final product scope supports a clear, evidence-based connection.
-
-## Key Features
-
-These are planned capabilities, not claims about features already implemented.
-
-1. **Order-linked stock demand:** Recalculate product or ingredient requirements when a relevant order is confirmed, changed, or cancelled.
-2. **Explainable inventory alerts:** Compare on-hand stock, confirmed demand, safety-stock levels, and expected deliveries; show the reason and timing behind each risk.
-3. **Purchase-order tracking:** Track supplier, expected arrival, and receiving status. Unconfirmed or not-yet-received goods are not treated as current physical stock.
-4. **Human-reviewed action suggestions:** Prepare a supplier follow-up draft or recommendation for a person to approve.
-5. **Activity history:** Record important order, stock, delivery, alert, and approval changes so a team can review what happened.
-
-## Example Demo Flow
-
-1. Show an item with enough stock for current demand.
-2. Add or change a confirmed customer order.
-3. Show updated demand and an alert if stock may run low before the expected delivery.
-4. Explain the alert using the related order, stock level, and delivery date.
-5. Let a team member review and approve or dismiss a suggested follow-up.
-6. Update an arrival date or record received goods, then show the recalculated risk and activity history.
-
-## Technology Stack
-
-No implementation stack has been confirmed or documented yet. Fill in this table with the tools actually used; include versions where practical.
-
-| Layer | Technology |
-|---|---|
-| Frontend | To be confirmed |
-| Backend / API | To be confirmed |
-| Database | To be confirmed |
-| AI / model / compute | To be confirmed; document provider, model, and purpose if used |
-| Hosting / development | To be confirmed (for example, Replit only if the team actually uses it) |
-| Other APIs, datasets, cloud services, tools, or sponsor resources | To be declared |
-
-Never commit API keys, passwords, tokens, or other secrets. Store local secrets outside source control and provide only variable names in .env.example.
-
-## Architecture
-
-The proposed workflow is: order input → human review of the order → inventory and demand calculation → explainable stock-risk alert → suggested action → human approval. Update this section with the real components and data flow after the prototype is built. If AI is used, document its exact role and the human review step.
-
-## Project Structure
-
-The imported application is in artifacts/stocklink/, with shared packages in lib/. The following structure is a guide from the tutorial, not a claim that these files already exist. Adopt only the parts that match the actual stack and platforms used.
-
-~~~text
-.
-├── docs/                         # Screenshots and architecture diagrams
-├── src/                          # Application code (structure depends on chosen stack)
-├── tests/                        # Tests, if applicable
-├── submission/                   # Final submission PDFs and proof-of-use documents
-├── .env.example                  # Variable names only; no secret values
-├── .gitignore
-├── LICENSE
-└── README.md
-~~~
-
-If the team chooses the tutorial's Python + Replit + RunPod example, it also shows requirements.txt, .replit, runpod/handler.py, and src/main.py. Add those only if they match the real implementation.
-
-## How to Run
-
-See Current Prototype above for setup and run commands.
-
-## Replit Use and Proof of Use
-
-The tutorial labels Replit usage and proof of use as required. The prototype was developed on Replit and its source has been imported; the official proof-of-use PDF is still to be supplied. If required for your submission, record what the team actually built, ran, or deployed on Replit and include the official proof-of-use document at:
-
-submission/SDC2026_RM15_Refunders_Replit_POU.pdf
-
-Do not claim Replit usage or create proof until the team has actually used the platform.
-
-## RunPod Use and Proof of Use
-
-The tutorial labels RunPod usage and proof of use as required. The team has not documented RunPod use in this repository. If required for your submission, describe the real workload and endpoint integration, and include the official proof-of-use document at:
-
-submission/SDC2026_RM15_Refunders_RunPod_POU.pdf
-
-Do not claim RunPod usage or create proof until the team has actually used the platform.
-
-## Challenges and Learnings
-
-To be completed during development. Record a real challenge, how the team addressed it, and what changed as a result.
-
-## Future Improvements
-
-Potential areas to evaluate include supplier follow-up workflows, configurable safety-stock rules, and integrations with existing business tools. These are ideas for future consideration, not committed or implemented features.
-
-## Team Declaration
-
-| Name | Role | GitHub username |
+| Variable | Example | Purpose |
 |---|---|---|
-| Wang Yanfeng | GitHub framework, programming, AI-tool research, video explanation, product testing, and PPT production | @WilliamWang185 |
-| Liu Jiaming | Market research, pitch presentation, video narration, product testing, and PPT production | @liujiaming-maker |
-| Zhou Xiaduo | User interface design and illustration, product testing, and PPT production | @XIA1969 |
-| Geng Ruixi | User interface design and illustration, product testing, and PPT production | @Geng0119 |
-| Gao Zijun | Synthesize final materials; build and produce the pitch deck; product testing and PPT production | @Skyler-Quinn |
+| PORT | 3000 | Required by Vite configuration; use an available positive port |
+| BASE_PATH | / | Required URL base; use / for root hosting |
 
-## Submission Checklist
+Set these before Vite starts. `.env.example` documents values; copying it alone does not export shell variables. The demo requires no API keys or DATABASE_URL.
 
-The provided tutorial also asks the team to complete these repository items. Confirm with the organizers whether Replit and RunPod proof documents are both mandatory for your team.
+## Forecast and stack
 
-- [ ] Complete the official Product Requirement Document (PRD).
-- [ ] Complete the pitch deck with the problem, solution, technical approach, and expected impact.
-- [ ] Deploy an accessible live prototype; a video or static mock-up alone does not meet the preliminary requirement.
-- [ ] Complete the Tech & Tools Declaration, including actual APIs, cloud services, AI tools/models, datasets, and sponsor resources.
-- [ ] Keep this GitHub repository public and aligned with the prototype.
-- [ ] Record a 5–7 minute pitching video with a prototype demo and upload it to YouTube.
-- [ ] Add the actual Replit and RunPod usage descriptions and required proof-of-use PDFs, following the organizer's format.
-- [ ] Add verified setup and run instructions and the actual project files.
-- [ ] Confirm each team member’s GitHub access to the repository.
-- [ ] Check that no secrets or API keys are committed.
-- [ ] Select and add an appropriate open-source license.
-- [ ] Rename submission files with the team's name as required by the tutorial.
-- [ ] Submit one official team submission through sdchack.my.
+Projected stock = on hand − baseline demand − confirmed recipe demand + scheduled open deliveries. Draft/cancelled orders are excluded. Risk is checked before and after same-day arrivals. Safety stock is a warning threshold. Baseline is additional to confirmed demand.
+
+Milk example: `30 − (12 × 3) = −6 L` before the day-3 delivery; 5 L safety is crossed in about 2.1 days. See [assumptions and limitations](docs/architecture.md).
+
+| Component | Technology / role |
+|---|---|
+| UI | React 19, TypeScript 5.9, Vite 7, Tailwind CSS 4, Wouter, Lucide |
+| Persistence | localStorage, key stocklink-demo-v1 |
+| Tooling | pnpm workspaces and GitHub Actions |
+| API / DB scaffold | Express health endpoint, generated clients and Drizzle/PostgreSQL; not integrated with demo stock workflows |
+| AI / external services | Not integrated |
+
+```text
+artifacts/stocklink/        Main demo and brand assets
+artifacts/api-server/       API scaffold
+artifacts/mockup-sandbox/   Design sandbox
+lib/                       Shared contracts, generated clients and DB scaffold
+scripts/                   Workspace utilities
+docs/                      Architecture, demo and competition reference
+.github/                   CI and contribution templates
+```
+
+## Team and collaboration
+
+**RM15 Refunders · Xiamen University Malaysia · Domain 2 — ALPHA RED**
+
+Wang Yanfeng (@WilliamWang185), Liu Jiaming (@liujiaming-maker), Zhou Xiaduo (@XIA1969), Geng Ruixi (@Geng0119), Gao Zijun (@Skyler-Quinn). Primary alignment: SDG 8, targets 8.2 and 8.3.
+
+[Team roles and preserved submission planning](docs/competition-reference.md) · [Contributing](CONTRIBUTING.md)
+
+CI validates install, types and build. Use the [manual demo checklist](docs/demo-guide.md) for behavior. Future directions include business-rule tests, stronger validation, shared persistence/authentication, and optional human-reviewed AI order drafts. RunPod and official proof-of-use PDFs remain outstanding.
+
+## License status
+
+Package manifests declare MIT, but no root LICENSE has been finalized. The team should confirm ownership and its intended license before adding authoritative license text.
