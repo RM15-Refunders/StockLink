@@ -62,7 +62,7 @@ These are planned capabilities, not claims about features already implemented.
 
 | Resource | Link |
 |---|---|
-| GitHub repository | https://github.com/RM15-Refunders/rm15-refunders |
+| GitHub repository | https://github.com/RM15-Refunders/StockLink |
 | Live prototype | To be added |
 | Pitch deck | To be added |
 | Demo video | To be added |
