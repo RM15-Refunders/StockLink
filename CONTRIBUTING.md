@@ -17,4 +17,4 @@ Use the [root README](README.md) to install on Linux x64/WSL2 with Node.js 24 an
 - Generated API clients/schemas should follow the API spec. The active demo does not use them for inventory persistence.
 - For public bugs, include reproducible fictional examples. For leaked credentials, rotate them and contact a maintainer directly; never paste secrets into a public issue.
 
-Package manifests say MIT, but the team must confirm ownership and licensing before adding a root LICENSE.
+Contributions are made under the Apache License 2.0; preserve third-party license and copyright notices.

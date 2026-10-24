@@ -82,8 +82,8 @@ Wang Yanfeng (@WilliamWang185), Liu Jiaming (@liujiaming-maker), Zhou Xiaduo (@X
 
 [Team roles and preserved submission planning](docs/competition-reference.md) · [Contributing](CONTRIBUTING.md)
 
-CI validates install, types and build. Use the [manual demo checklist](docs/demo-guide.md) for behavior. Future directions include business-rule tests, stronger validation, shared persistence/authentication, and optional human-reviewed AI order drafts. RunPod and official proof-of-use PDFs remain outstanding.
+CI validates install, types and build. Use the [manual demo checklist](docs/demo-guide.md) for behavior. Future directions include business-rule tests, stronger validation, shared persistence/authentication, and optional human-reviewed AI order drafts. Replit usage evidence must accompany the declaration. Under orientation slide 29, RunPod is required for GPU training, fine-tuning or model inference; the current browser-only demo performs no GPU workload.
 
-## License status
+## License
 
-Package manifests declare MIT, but no root LICENSE has been finalized. The team should confirm ownership and its intended license before adding authoritative license text.
+StockLink is licensed under the [Apache License 2.0](LICENSE), as required by the SDC orientation repository rules. Copyright 2026 RM15 Refunders contributors. Third-party libraries retain their own licenses and notices; see [NOTICE](NOTICE).
