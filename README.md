@@ -1,6 +1,6 @@
-# RM15 Refunders
+# StockLink
 
-> Working concept: an order-aware inventory automation product for Malaysian micro and small businesses. Product name: to be confirmed.
+> StockLink is an order-aware inventory automation product for Malaysian micro and small businesses.
 
 ## Project Overview
 
@@ -62,7 +62,7 @@ These are planned capabilities, not claims about features already implemented.
 
 | Resource | Link |
 |---|---|
-| GitHub repository | https://github.com/WilliamWang185/rm15-refunders |
+| GitHub repository | https://github.com/RM15-Refunders/rm15-refunders |
 | Live prototype | To be added |
 | Pitch deck | To be added |
 | Demo video | To be added |
@@ -93,7 +93,7 @@ Potential areas to evaluate include supplier follow-up workflows, configurable s
 
 ## Submission Checklist
 
-- [ ] Confirm the product name.
+- [ ] Confirm the final MVP feature set.
 - [ ] Complete the official product requirement document.
 - [ ] Add the pitch deck, live prototype, and demo video links.
 - [ ] Declare all technologies, tools, services, datasets, models, and sponsor resources actually used.
