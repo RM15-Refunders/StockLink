@@ -153,7 +153,7 @@ function App() {
   notify(status === 'approved' ? 'Recommendation marked approved for follow-up' : 'Recommendation rejected');
  };
  const routeName = nav.find((n) => n.href === location)?.name ?? 'StockLink';
- const header = (eyebrow: string, title: string, subtitle: string, actions?: ReactNode) => <div className="page-head"><div><div className="eyebrow">{eyebrow}</div><h1 className="page-title">{title}</h1><p className="page-subtitle">{subtitle}</p></div>{actions && <div className="actions">{actions}</div>}</div>;
+  const header = (eyebrow: string, title: string, subtitle: string, actions?: ReactNode, branded = false) => <div className={`page-head${branded ? ' page-head-branded' : ''}`}><div className={branded ? 'page-head-identity' : ''}>{branded && <div className="overview-logo-tile"><img src={`${import.meta.env.BASE_URL}stocklink-logo.jpg`} alt="StockLink shield, links, inventory and alert logo" /></div>}<div><div className="eyebrow">{eyebrow}</div><h1 className="page-title">{title}</h1><p className="page-subtitle">{subtitle}</p></div></div>{actions && <div className="actions">{actions}</div>}</div>;
  const button = (text: string, onClick: () => void, primary = false, icon?: ReactNode, testid = 'button-action') => <button data-testid={testid} className={`btn ${primary ? 'btn-primary' : ''}`} onClick={onClick}>{icon}{text}</button>;
  const orderDemandSummary = (order: Order) => {
   const demand = demandForOrder(order);
@@ -167,7 +167,7 @@ function App() {
   const riskItems = store.inventory.map((item) => ({ item, risk: riskInfo(item) })).filter(({ risk }) => risk.days <= 7);
   const confirmedCount = store.orders.filter((o) => o.status === 'confirmed').length;
   const valueEstimate = store.inventory.reduce((sum, i) => sum + i.stock * (i.id === 'milk' ? 4.8 : i.id === 'beans' ? 78 : .22), 0);
-  return <>{header('KOPI CORNER · DAILY BRIEFING', 'Good morning, here’s the stock picture.', `A clear view of what needs attention · ${latestDate}`, button('Create an order', () => setModal({ type: 'order' }), true, <Plus size={16} />, 'button-create-order'))}
+   return <>{header('KOPI CORNER · DAILY BRIEFING', 'Good morning, here’s the stock picture.', `A clear view of what needs attention · ${latestDate}`, button('Create an order', () => setModal({ type: 'order' }), true, <Plus size={16} />, 'button-create-order'), true)}
    <div className="grid kpi-grid">
     <div className="card"><div className="kpi-label">Items to watch <span className="kpi-icon"><AlertTriangle size={15}/></span></div><div className="kpi-value" data-testid="kpi-at-risk">{riskItems.length}</div><div className="kpi-note">Forecast below safety within 7 days</div></div>
     <div className="card"><div className="kpi-label">On-hand estimate <span className="kpi-icon"><Boxes size={15}/></span></div><div className="kpi-value">{money(valueEstimate)}</div><div className="kpi-note">Illustrative value, not a valuation</div></div>
@@ -178,7 +178,7 @@ function App() {
     <div>
      <div className="card chart-card"><div className="section-head"><div><h2 className="section-title">7-day stock outlook</h2><div className="section-caption">Baseline demand + confirmed orders − incoming deliveries</div></div><span className="pill pill-risk"><span className="status-dot"/> Risk shown below safety</span></div>
       <div className="chart-wrap"><StockChart items={timelineItems} forecastAt={forecastAt} /></div>
-      <div className="timeline-legend"><span><i className="legend-dot" style={{ background: '#bd7448' }}/>Fresh milk</span><span><i className="legend-dot" style={{ background: '#39715f' }}/>Coffee beans</span><span><i className="legend-dot" style={{ background: '#c29a52' }}/>Takeaway cups</span></div>
+      <div className="timeline-legend"><span><i className="legend-dot" style={{ background: '#1685c7' }}/>Fresh milk</span><span><i className="legend-dot" style={{ background: '#16865c' }}/>Coffee beans</span><span><i className="legend-dot" style={{ background: '#31577e' }}/>Takeaway cups</span></div>
       <p className="forecast-note">Each line is scaled to its own unit. The dashed marker is that ingredient’s safety stock; order demand is applied on its scheduled date.</p>
      </div>
      <div className="card risk-card"><div className="risk-head"><div><h2 className="section-title">At-risk items</h2><div className="section-caption">Plain-language timing, not just a warning</div></div><Link href="/inventory" className="btn btn-small btn-quiet" data-testid="link-view-inventory">Inventory <ArrowRight size={14}/></Link></div>
@@ -225,7 +225,7 @@ function App() {
       const pct = Math.max(4, Math.min(100, i.stock / Math.max(i.safety * 2, 1) * 100));
       return <tr key={i.id} data-testid={`row-inventory-${i.id}`}>
        <td><div className="row-title">{i.name}</div><div className="row-sub">{recipeUsage(i.id)}</div></td>
-       <td><div className="stock-cell">{fmt(i.stock)} <span className="row-sub">{i.unit}</span></div><div className="progress"><span style={{ width: `${pct}%`, background: belowSafety(i.stock, i.safety) ? '#b75d49' : '#d5964f' }}/></div></td>
+       <td><div className="stock-cell">{fmt(i.stock)} <span className="row-sub">{i.unit}</span></div><div className="progress"><span style={{ width: `${pct}%`, background: belowSafety(i.stock, i.safety) ? '#ed7d13' : '#16865c' }}/></div></td>
        <td>{fmt(i.safety)} {i.unit}</td><td>{fmt(i.daily)} {i.unit}</td>
        <td>
         <span className={`pill ${forecastBelowSafety ? 'pill-risk' : 'pill-safe'}`}>{fmt(forecast)} {i.unit}</span>
@@ -310,7 +310,7 @@ function App() {
 
  return <div className="app-shell">
   <aside className="sidebar">
-   <div className="brand"><div className="brand-mark">S</div><div><div className="brand-name">StockLink</div><div className="brand-sub">Kopi Corner demo</div></div></div>
+   <div className="brand"><div className="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" role="img"><path d="M20 3.5 34 9v9.4c0 8.1-5.4 14.4-14 18.1C11.4 32.8 6 26.5 6 18.4V9l14-5.5Z" fill="#0d4b86" stroke="#4da9e6" strokeWidth="1.7"/><path d="M12 23.5h16M13.5 27h13M15 30.5h10" stroke="#82c8f2" strokeWidth="2" strokeLinecap="round"/><path d="m15 16.6 2.2-2.2a3.6 3.6 0 0 1 5.1 0 3.6 3.6 0 0 1 0 5.1l-2.1 2.1m4.8-4.2 2.1-2.1a3.6 3.6 0 0 0-5.1-5.1l-2.2 2.2m-1 4.5 4.4-4.4" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div><div className="brand-name">StockLink</div><div className="brand-sub">Kopi Corner demo</div></div></div>
    <div className="nav-label">Workspace</div>{nav.map(({ href, name, icon: Icon }) => <Link href={href} key={href} className={`nav-link ${location === href ? 'active' : ''}`} data-testid={`nav-${name.toLowerCase()}`}><Icon size={17}/><span>{name}</span>{name === 'Activity' && <ChevronRight size={13} style={{ marginLeft: 'auto', opacity: .55 }}/>}</Link>)}
    <div className="side-bottom"><div className="workspace"><span>Workspace</span><strong>Kopi Corner</strong><span>Petaling Jaya · MY</span></div><div className="workspace" style={{ borderTop: 0, marginTop: 7, paddingTop: 5, fontSize: 10 }}>Local demo · your changes stay in this browser</div></div>
   </aside>
@@ -333,7 +333,7 @@ function Empty({ icon, title, detail, action }: { icon: ReactNode; title: string
 }
 
 function StockChart({ items, forecastAt }: { items: Ingredient[]; forecastAt: (item: Ingredient, day: number) => number }) {
- const colors: Record<string, string> = { milk: '#bd7448', beans: '#39715f', cups: '#c29a52' };
+ const colors: Record<string, string> = { milk: '#1685c7', beans: '#16865c', cups: '#31577e' };
  const x = (day: number) => 40 + day * 76;
  const y = (value: number, max: number) => 175 - (Math.max(0, Math.min(max, value)) / max) * 140;
  return <svg className="timeline" viewBox="0 0 590 205" role="img" aria-label="Seven day stock forecast chart">

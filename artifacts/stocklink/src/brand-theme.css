@@ -1,0 +1,420 @@
+:root {
+  color-scheme: light;
+  --background: 210 38% 97%;
+  --foreground: 213 39% 16%;
+  --border: 210 28% 88%;
+  --input: 210 28% 84%;
+  --ring: 205 94% 43%;
+  --card: 0 0% 100%;
+  --card-foreground: 213 39% 16%;
+  --primary: 211 78% 31%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 208 46% 93%;
+  --secondary-foreground: 211 64% 25%;
+  --muted: 210 35% 94%;
+  --muted-foreground: 211 20% 39%;
+  --accent: 202 94% 42%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 19 89% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --app-font-sans: Inter, "Avenir Next", "Trebuchet MS", sans-serif;
+  --font-display: Inter, "Avenir Next", "Trebuchet MS", sans-serif;
+}
+
+body {
+  background: #f2f6fa;
+  color: #172f49;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid #1785c5;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #d8effc;
+}
+
+.app-shell {
+  background: #f2f6fa;
+}
+
+.sidebar {
+  background: #10365f;
+  color: #f4f8fc;
+}
+
+.brand {
+  gap: 10px;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #ffffff36;
+  border-radius: 11px;
+  background: #0b2c50;
+  color: #ffffff;
+}
+
+.brand-mark svg {
+  width: 35px;
+  height: 35px;
+  display: block;
+}
+
+.brand-name {
+  color: #ffffff;
+  letter-spacing: -0.55px;
+}
+
+.brand-sub,
+.workspace {
+  color: #c2d3e3;
+}
+
+.workspace strong {
+  color: #ffffff;
+}
+
+.nav-label {
+  color: #a9c3da;
+}
+
+.nav-link {
+  color: #d5e3ef;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #1d4a76;
+  color: #ffffff;
+}
+
+.nav-link.active {
+  box-shadow: inset 3px 0 #48a8e6;
+}
+
+.main-area {
+  background: #f2f6fa;
+}
+
+.topbar {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.topbar-title {
+  color: #16395f;
+}
+
+.demo-label {
+  border-color: #dbe6ef;
+  background: #eef5fa;
+  color: #35546e;
+}
+
+.top-meta,
+.reset-link {
+  color: #52697e;
+}
+
+.main-content {
+  color: #172f49;
+}
+
+.page-head-branded {
+  align-items: center;
+}
+
+.page-head-identity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.overview-logo-tile {
+  width: 104px;
+  height: 104px;
+  flex: 0 0 104px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #e0e9f1;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 5px 16px #18385712;
+}
+
+.overview-logo-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.eyebrow {
+  color: #466782;
+}
+
+.page-title,
+.section-title,
+.modal-title,
+.kpi-value {
+  color: #173754;
+}
+
+.page-subtitle,
+.section-caption,
+.kpi-note,
+.risk-meta,
+.delivery-sub,
+.subtle,
+.helper,
+.forecast-note {
+  color: #586f84;
+}
+
+.btn {
+  border-color: #cedce8;
+  color: #214765;
+  background: #ffffff;
+}
+
+.btn:hover {
+  border-color: #a8c9e1;
+  background: #f2f8fc;
+}
+
+.btn-primary {
+  border-color: #0b71b7;
+  background: #0b71b7;
+  color: #ffffff;
+  box-shadow: 0 2px 5px #0b71b71f;
+}
+
+.btn-primary:hover {
+  border-color: #075e9d;
+  background: #075e9d;
+}
+
+.btn-quiet {
+  color: #0875b9;
+}
+
+.btn-danger {
+  color: #a64a2a;
+  border-color: #f1cdbb;
+  background: #fff9f5;
+}
+
+.card {
+  border-color: #dce6ef;
+  background: #ffffff;
+  box-shadow: 0 3px 14px #1838580a;
+}
+
+.kpi-label {
+  color: #526c82;
+}
+
+.kpi-icon,
+.empty-icon {
+  background: #e9f3fa;
+  color: #126fae;
+}
+
+.risk-head,
+.table-toolbar {
+  border-color: #e2eaf1;
+}
+
+.risk-item,
+.delivery-row,
+.list-row,
+td,
+.activity-item {
+  border-color: #e7edf3;
+}
+
+.risk-number {
+  color: #bf610d;
+}
+
+.pill-risk {
+  background: #fff0e3;
+  color: #a84e08;
+}
+
+.pill-safe {
+  background: #e6f5ed;
+  color: #176c46;
+}
+
+.pill-pending {
+  background: #fff2e4;
+  color: #99500e;
+}
+
+.pill-muted {
+  background: #edf2f6;
+  color: #475e72;
+}
+
+.plain-math {
+  border-left-color: #e88b27;
+  background: #fff8f0;
+  color: #4a5e70;
+}
+
+.recommendation {
+  border-color: #d4eadc;
+  background: #f0f8f3;
+}
+
+.recommendation p {
+  color: #526c5f;
+}
+
+.timeline-label {
+  fill: #60778a;
+}
+
+.timeline-legend {
+  color: #526b80;
+}
+
+th {
+  color: #526b80;
+  background: #f3f7fa;
+}
+
+td {
+  color: #263f56;
+}
+
+.progress {
+  background: #e4edf3;
+}
+
+.row-sub {
+  color: #60758a;
+}
+
+.field label {
+  color: #3c5870;
+}
+
+.field input,
+.field select,
+.field textarea,
+.search,
+.select {
+  border-color: #cfdeea;
+  color: #173754;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.search:focus-visible,
+.select:focus-visible {
+  border-color: #1685c5;
+}
+
+.modal-backdrop {
+  background: #0c294780;
+}
+
+.modal {
+  background: #ffffff;
+  box-shadow: 0 24px 80px #0c294733;
+}
+
+.icon-btn {
+  background: #eaf2f8;
+  color: #315672;
+}
+
+.icon-btn:hover {
+  background: #dcebf6;
+}
+
+.line-editor,
+.recipe-card {
+  border-color: #dce7f0;
+  background: #f4f8fb;
+}
+
+.demand-box {
+  background: #eaf6ef;
+  color: #245c42;
+}
+
+.recipe-line {
+  color: #526b80;
+}
+
+.activity-dot {
+  background: #16865c;
+}
+
+.toast {
+  background: #10365f;
+  box-shadow: 0 10px 30px #10365f2b;
+}
+
+.mobile-nav {
+  background: #10365f;
+}
+
+.mobile-nav a {
+  color: #d5e3ef;
+}
+
+.mobile-nav a.active {
+  color: #65c09a;
+}
+
+@media (max-width: 700px) {
+  .page-head-branded {
+    align-items: stretch;
+  }
+
+  .page-head-identity {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .overview-logo-tile {
+    width: 78px;
+    height: 78px;
+    flex-basis: 78px;
+    border-radius: 14px;
+  }
+
+  .page-head-identity .page-title {
+    font-size: clamp(21px, 6vw, 27px);
+    letter-spacing: -0.8px;
+  }
+
+  .page-head-branded .actions {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
