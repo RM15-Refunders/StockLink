@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "StockLink"
+description = "A live inventory and order operations prototype for Malaysian cafes and small food-service teams. Connects confirmed orders to ingredient forecasts and delivery timing, with human-reviewed recommendations and local demo persistence."
+version = "1.0.0"
+id = "artifacts/stocklink"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21696
+
+[services.development]
+run = "pnpm --filter @workspace/stocklink run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/stocklink", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/stocklink/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21696"
+BASE_PATH = "/"
