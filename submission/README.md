@@ -2,12 +2,12 @@
 
 We are RM15 Refunders from Xiamen University Malaysia. These are our SDC Hackathon 2026 preliminary materials for StockLink, updated on 25 October 2026.
 
-**[▶ Watch our Pitch Video on YouTube](https://youtu.be/a2iZmWnK0s8)** · **[View our Pitch Deck](SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
+**[▶ Watch our Pitch Video on YouTube](https://youtu.be/a2iZmWnK0s8)** · **[View our Pitch Deck](SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)** · **[Download PPTX](https://raw.githubusercontent.com/RM15-Refunders/StockLink/main/submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
 
 | Material | File or public link |
 |---|---|
 | Pitch video | [YouTube](https://youtu.be/a2iZmWnK0s8) |
-| Pitch deck | [SDC2026_RM15Refunders_Pitchdeck Slide.pptx](SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) |
+| Pitch deck | [SDC2026_RM15Refunders_Pitchdeck Slide.pptx](SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) · [Download PPTX](https://raw.githubusercontent.com/RM15-Refunders/StockLink/main/submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) |
 | Preliminary proposal | [SDC2026_RM15Refunders_Preliminary.pdf](SDC2026_RM15Refunders_Preliminary.pdf) |
 | Technical and tools declaration | [SDC2026_RM15Refunders_TechDeclaration.pdf](SDC2026_RM15Refunders_TechDeclaration.pdf) |
 | Replit usage statement | [REPLIT DECLARATION OF USE.pdf](REPLIT%20DECLARATION%20OF%20USE.pdf) |

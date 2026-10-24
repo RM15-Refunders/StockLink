@@ -31,7 +31,7 @@ This page describes the implemented prototype and the evidence available in this
 | RunPod | Not used. No GPU training, fine-tuning or model inference; no endpoint or GPU runtime exists to declare |
 | PRD / preliminary proposal | [PDF available in submission](../submission/SDC2026_RM15Refunders_Preliminary.pdf); original public-redacted contact field retained |
 | Technical tools declaration | [PDF available in submission](../submission/SDC2026_RM15Refunders_TechDeclaration.pdf); accompanying [maintained disclosure](tech-tools-declaration.md) records current repository details |
-| Pitch deck | [Uploaded presentation](../submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) |
+| Pitch deck | [Uploaded presentation](../submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) · [Download PPTX](https://raw.githubusercontent.com/RM15-Refunders/StockLink/main/submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx) |
 | Pitching video | [Uploaded to YouTube](https://youtu.be/a2iZmWnK0s8) |
 
 ## Problem and implemented solution

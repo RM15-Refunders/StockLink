@@ -8,7 +8,7 @@ An inventory and order-management prototype for Malaysian micro and small busine
 
 ## Watch our pitch
 
-**[▶ Watch our Pitch Video on YouTube](https://youtu.be/a2iZmWnK0s8)** · **[View our Pitch Deck](submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
+**[▶ Watch our Pitch Video on YouTube](https://youtu.be/a2iZmWnK0s8)** · **[View our Pitch Deck](submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)** · **[Download PPTX](https://raw.githubusercontent.com/RM15-Refunders/StockLink/main/submission/SDC2026_RM15Refunders_Pitchdeck%20Slide.pptx)**
 
 Our presentation introduces StockLink and our order-linked inventory workflow. All uploaded documents are collected in [submission](submission/README.md).
 
