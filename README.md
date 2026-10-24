@@ -135,11 +135,11 @@ Potential areas to evaluate include supplier follow-up workflows, configurable s
 
 | Name | Role | GitHub username |
 |---|---|---|
-| Wang Yanfeng | GitHub framework, programming, AI-tool research, and video explanation | @WilliamWang185 |
-| Liu Jiaming | Market research, pitch presentation, and recording the video narration | @liujiaming-maker |
-| Zhou Xiaduo | User interface design and illustration | @XIA1969 |
-| Geng Ruixi | User interface design and illustration | @Geng0119 |
-| Gao Zijun | Synthesize final materials; build and produce the pitch deck | @Skyler-Quinn |
+| Wang Yanfeng | GitHub framework, programming, AI-tool research, video explanation, product testing, and PPT production | @WilliamWang185 |
+| Liu Jiaming | Market research, pitch presentation, video narration, product testing, and PPT production | @liujiaming-maker |
+| Zhou Xiaduo | User interface design and illustration, product testing, and PPT production | @XIA1969 |
+| Geng Ruixi | User interface design and illustration, product testing, and PPT production | @Geng0119 |
+| Gao Zijun | Synthesize final materials; build and produce the pitch deck; product testing and PPT production | @Skyler-Quinn |
 
 ## Submission Checklist
 
