@@ -31,4 +31,11 @@ PORT=3000 BASE_PATH=/ pnpm run build
 
 PORT 和 BASE_PATH 必须在启动前提供。原生 Windows/macOS 尚未验证，当前工作区排除了部分非 Linux 原生依赖。
 
-原有团队分工和参赛计划完整保存在 [competition-reference.md](competition-reference.md)。协作请参考 [CONTRIBUTING.md](../CONTRIBUTING.md)。尚未接入的服务和未提交的证明材料不计为完成。
+当前团队分工、参赛说明和材料状态见 [competition-reference.md](competition-reference.md)。协作请参考 [CONTRIBUTING.md](../CONTRIBUTING.md)。尚未接入的服务和未提交的证明材料不计为完成。
+
+## 使用证明与工具声明
+
+- [Replit 使用证明](replit-usage-evidence.md)：采用可公开访问的在线演示网址作为证明。
+- [技术工具声明](tech-tools-declaration.md)：分别记录开发辅助 AI 和应用实际能力。
+- [依赖清单](dependency-inventory.md)：实际依赖版本和上游许可证信息。
+- 团队未使用 RunPod；当前演示没有 GPU 训练、微调或模型推理。

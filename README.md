@@ -74,15 +74,22 @@ docs/                      Architecture, demo and competition reference
 .github/                   CI and contribution templates
 ```
 
+## Evidence and declaration
+
+- [Replit usage evidence](docs/replit-usage-evidence.md): verified public deployment URL, development link and use statement.
+- [Technical tools disclosure](docs/tech-tools-declaration.md): implementation, development AI assistance, synthetic data and service use.
+- [Dependency inventory](docs/dependency-inventory.md): installed direct dependencies and upstream license metadata.
+- RunPod was not used. The current prototype has no GPU training, fine-tuning or model inference.
+
 ## Team and collaboration
 
 **RM15 Refunders · Xiamen University Malaysia · Domain 2 — ALPHA RED**
 
 Wang Yanfeng (@WilliamWang185), Liu Jiaming (@liujiaming-maker), Zhou Xiaduo (@XIA1969), Geng Ruixi (@Geng0119), Gao Zijun (@Skyler-Quinn). Primary alignment: SDG 8, targets 8.2 and 8.3.
 
-[Team roles and preserved submission planning](docs/competition-reference.md) · [Contributing](CONTRIBUTING.md)
+[Competition brief and submission status](docs/competition-reference.md) · [Contributing](CONTRIBUTING.md)
 
-CI validates install, types and build. Use the [manual demo checklist](docs/demo-guide.md) for behavior. Future directions include business-rule tests, stronger validation, shared persistence/authentication, and optional human-reviewed AI order drafts. Replit usage evidence must accompany the declaration. Under orientation slide 29, RunPod is required for GPU training, fine-tuning or model inference; the current browser-only demo performs no GPU workload.
+CI validates install, types and build. Use the [manual demo checklist](docs/demo-guide.md) for behavior. Future directions include business-rule tests, stronger validation, shared persistence/authentication, and optional human-reviewed AI order drafts. Replit usage is documented in the [usage evidence](docs/replit-usage-evidence.md) and [technical tools disclosure](docs/tech-tools-declaration.md). Under orientation slide 29, RunPod is required for GPU training, fine-tuning or model inference; the current browser-only demo performs no GPU workload.
 
 ## License
 

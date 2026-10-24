@@ -1,45 +1,39 @@
-# [Project name]
+# StockLink
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+StockLink is a browser-local order and inventory demo for the fictional Kopi Corner workspace, developed and published on Replit by RM15 Refunders.
 
-## Run & Operate
+## Run and validate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+Use Node.js 24 and pnpm 10.26.1 from the repository root on Linux x64 or WSL2.
 
-## Stack
+- Install: `pnpm install --frozen-lockfile`
+- Frontend: `PORT=3000 BASE_PATH=/ pnpm --filter @workspace/stocklink run dev`
+- Validate and build: `PORT=3000 BASE_PATH=/ pnpm run build`
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+PORT and BASE_PATH must be set before Vite configuration loads. The frontend demo does not require a running API, DATABASE_URL or an AI key. Static output is artifacts/stocklink/dist/public/.
 
-## Where things live
+## Stack and repository map
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- artifacts/stocklink/src/App.tsx: React 19, TypeScript, five views and deterministic forecast logic.
+- artifacts/stocklink/src/brand-theme.css: StockLink brand styling.
+- artifacts/stocklink/public/: public brand assets.
+- Browser localStorage key stocklink-demo-v1: demo state and events.
+- artifacts/api-server and lib/: API/DB scaffolding and generated contracts, not the active inventory persistence layer.
+- docs/replit-usage-evidence.md: verified deployment link and Replit use statement.
 
-## Architecture decisions
+## Product and implementation decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+Confirmed orders contribute recipe demand; draft/cancelled orders do not. Baseline daily usage is additional. Risk is checked before and after same-day deliveries. Receiving a delivery adds stock once and removes it from incoming quantities. Recommendation approval records a human decision without contacting suppliers.
 
-## Product
+Local state deliberately supports a synthetic demo. It is not a shared production database or a tamper-resistant audit log. RunPod was not used and no GPU workload is present.
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+## Collaboration and constraints
 
-## User preferences
+Keep factual claims aligned with the implemented demo. Do not add unsupported AI capabilities or measured impact. Use synthetic data only. Preserve the Apache-2.0 project license and third-party notices. Follow CONTRIBUTING.md and docs/demo-guide.md when changing behavior. Current native dependency overrides target Linux x64.
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+## References
 
-## Gotchas
-
-_Populate as you build — sharp edges, "always run X before Y" rules._
-
-## Pointers
-
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- README.md: run instructions and current scope
+- docs/architecture.md: forecasting assumptions and limitations
+- docs/demo-guide.md: manual verification
+- docs/competition-reference.md: competition brief and submission status
